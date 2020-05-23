@@ -29,7 +29,7 @@ namespace DataAccessLayer
 		{
 			using (Context db = new Context())
 			{
-				return db.Doctors.ToList();
+				return db.Doctors.Include("Experiences").Include("AdditionalEducations").ToList();
 			}
 		}
 
@@ -38,6 +38,17 @@ namespace DataAccessLayer
 			using (Context db = new Context())
 			{
 				return db.Doctors.Where(x => x.Id == id).FirstOrDefault();
+			}
+		}
+
+		public void AddDoctorsExperience(DoctorsExperience experience)
+		{
+			using(Context db = new Context())
+			{
+				//int lastId = db.DoctorsExperiences.Max(x => x.Id);
+				//experience.Id = ++lastId;
+				db.DoctorsExperiences.Add(experience);
+				db.SaveChanges();
 			}
 		}
 	}

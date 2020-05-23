@@ -14,7 +14,16 @@ namespace DataAccessLayer.Models
 		public string Specialty { get; set; }
 		public string Category { get; set; }
 		public double Experience { get; set; }
-		public int? DepartmentId { get; set; }		
-		
+		public int? DepartmentId { get; set; }
+
+		public ICollection<DoctorsExperience> Experiences { get; set; }
+		public ICollection<DoctorsAdditionalEducation> AdditionalEducations { get; set; }
+
+		public Doctor()
+		{
+			Experiences = new List<DoctorsExperience>();
+			AdditionalEducations = new List<DoctorsAdditionalEducation>();
+		}
+
 	}
 }

@@ -57,8 +57,10 @@
   <ItemGroup>
     <Compile Include="Context.cs" />
     <Compile Include="DataAccess.cs" />
+    <Compile Include="Models\DoctorsAdditionalEducation.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Doctor.cs" />
+    <Compile Include="Models\DoctorsExperience.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

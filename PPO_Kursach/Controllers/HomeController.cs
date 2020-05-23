@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer;
+using DataAccessLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace PPO_Kursach.Controllers
 		[HttpGet]
 		public ActionResult About()
 		{
-			return Json(dataAccess.GetDepartments(), JsonRequestBehavior.AllowGet);
+			return GetDoctors();
 		}
 
 		[HttpGet]
@@ -40,6 +41,21 @@ namespace PPO_Kursach.Controllers
 		public ActionResult GetDoctor(int id)
 		{
 			return Json(dataAccess.GetDoctor(id), JsonRequestBehavior.AllowGet);
+		}
+
+		public ActionResult AddDoctorsExperience(/*DoctorsExperience experience*/)
+		{
+			DoctorsExperience experience = new DoctorsExperience()
+			{
+				Id	= 1,
+				Beginning = new DateTime(1901, 1, 1),
+				Ending = new DateTime(1902, 1, 1),
+				Name = "some1",
+				DoctorId = 1
+			};
+			dataAccess.AddDoctorsExperience(experience);
+
+			return GetDoctor(1);
 		}
 
 		public ActionResult Contact()

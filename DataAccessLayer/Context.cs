@@ -15,5 +15,7 @@ namespace DataAccessLayer
 
 		public DbSet<Department> Departments { get; set; }
 		public DbSet<Doctor> Doctors { get; set; }
+		public DbSet<DoctorsAdditionalEducation> DoctorsAdditionalEducations { get; set; }
+		public DbSet<DoctorsExperience> DoctorsExperiences { get; set; }
 	}
 }
