@@ -109,5 +109,3 @@ E:\Универ\ППО\Курсач\PPO_Kursach\obj\Debug\PPO_Kursach.pdb
 E:\Универ\ППО\Курсач\PPO_Kursach\bin\DataAccessLayer.dll
 E:\Универ\ППО\Курсач\PPO_Kursach\bin\DataAccessLayer.pdb
 E:\Универ\ППО\Курсач\PPO_Kursach\bin\DataAccessLayer.dll.config
-E:\Универ\ППО\Курсач\PPO_Kursach\obj\Debug\PPO_Kursach.Migrations.asdf.resources
-E:\Универ\ППО\Курсач\PPO_Kursach\obj\Debug\PPO_Kursach.csproj.GenerateResource.cache

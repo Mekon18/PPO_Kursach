@@ -29,7 +29,7 @@ namespace DataAccessLayer
 		{
 			using (Context db = new Context())
 			{
-				return db.Doctors.Include("Experiences").Include("AdditionalEducations").ToList();
+				return db.Doctors.ToList();
 			}
 		}
 
@@ -37,7 +37,7 @@ namespace DataAccessLayer
 		{
 			using (Context db = new Context())
 			{
-				return db.Doctors.Where(x => x.Id == id).FirstOrDefault();
+				return db.Doctors.Include("Experiences").Include("AdditionalEducations").Where(x => x.Id == id).FirstOrDefault();
 			}
 		}
 
@@ -45,9 +45,16 @@ namespace DataAccessLayer
 		{
 			using(Context db = new Context())
 			{
-				//int lastId = db.DoctorsExperiences.Max(x => x.Id);
-				//experience.Id = ++lastId;
 				db.DoctorsExperiences.Add(experience);
+				db.SaveChanges();
+			}
+		}
+
+		public void AddDoctorsAdditionalEducation(DoctorsAdditionalEducation AdditionalEducation)
+		{
+			using (Context db = new Context())
+			{
+				db.DoctorsAdditionalEducations.Add(AdditionalEducation);
 				db.SaveChanges();
 			}
 		}

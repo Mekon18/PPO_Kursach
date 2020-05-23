@@ -43,21 +43,22 @@ namespace PPO_Kursach.Controllers
 			return Json(dataAccess.GetDoctor(id), JsonRequestBehavior.AllowGet);
 		}
 
-		public ActionResult AddDoctorsExperience(/*DoctorsExperience experience*/)
+		public void AddDoctorsExperience(DoctorsExperience experience)
+		{			
+			dataAccess.AddDoctorsExperience(experience);			
+		}
+		
+		public ActionResult AddDoctorsAdditionalEducation(/*DoctorsAdditionalEducation AdditionalEducation*/)
 		{
-			DoctorsExperience experience = new DoctorsExperience()
+			DoctorsAdditionalEducation AdditionalEducation = new DoctorsAdditionalEducation
 			{
-				Id	= 1,
-				Beginning = new DateTime(1901, 1, 1),
-				Ending = new DateTime(1902, 1, 1),
-				Name = "some1",
-				DoctorId = 1
+				DoctorId = 1,
+				Ending = new DateTime(1990, 1, 1),
+				Name = "any"
 			};
-			dataAccess.AddDoctorsExperience(experience);
-
+			dataAccess.AddDoctorsAdditionalEducation(AdditionalEducation);
 			return GetDoctor(1);
 		}
-
 		public ActionResult Contact()
 		{
 			ViewBag.Message = "Your contact page.";
