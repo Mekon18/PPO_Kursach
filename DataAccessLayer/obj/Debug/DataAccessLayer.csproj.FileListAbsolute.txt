@@ -1,0 +1,14 @@
+E:\Универ\ППО\Курсач\DataAccessLayer\bin\Debug\DataAccessLayer.dll.config
+E:\Универ\ППО\Курсач\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+E:\Универ\ППО\Курсач\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+E:\Универ\ППО\Курсач\DataAccessLayer\bin\Debug\EntityFramework.dll
+E:\Универ\ППО\Курсач\DataAccessLayer\bin\Debug\EntityFramework.SqlServer.dll
+E:\Универ\ППО\Курсач\DataAccessLayer\bin\Debug\EntityFramework.xml
+E:\Универ\ППО\Курсач\DataAccessLayer\bin\Debug\EntityFramework.SqlServer.xml
+E:\Универ\ППО\Курсач\DataAccessLayer\obj\Debug\DataAccessLayer.csprojAssemblyReference.cache
+E:\Универ\ППО\Курсач\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CoreCompileInputs.cache
+E:\Универ\ППО\Курсач\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CopyComplete
+E:\Универ\ППО\Курсач\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+E:\Универ\ППО\Курсач\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
+E:\Универ\ППО\Курсач\DataAccessLayer\bin\Debug\Newtonsoft.Json.dll
+E:\Универ\ППО\Курсач\DataAccessLayer\bin\Debug\Newtonsoft.Json.xml

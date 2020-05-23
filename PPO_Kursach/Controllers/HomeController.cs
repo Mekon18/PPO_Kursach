@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,16 +9,37 @@ namespace PPO_Kursach.Controllers
 {
 	public class HomeController : Controller
 	{
+		private DataAccess dataAccess = new DataAccess();
 		public ActionResult Index()
 		{
 			return View();
 		}
-
+		[HttpGet]
 		public ActionResult About()
 		{
-			ViewBag.Message = "Your application description page.";
+			return Json(dataAccess.GetDepartments(), JsonRequestBehavior.AllowGet);
+		}
 
-			return View();
+		[HttpGet]
+		public ActionResult GetDepartments()
+		{
+			return Json(dataAccess.GetDepartments(), JsonRequestBehavior.AllowGet);
+		}
+		[HttpGet]
+		public ActionResult GetDepartment(int id)
+		{
+			return Json(dataAccess.GetDepartment(id), JsonRequestBehavior.AllowGet);
+		}
+
+		[HttpGet]
+		public ActionResult GetDoctors()
+		{
+			return Json(dataAccess.GetDoctors(), JsonRequestBehavior.AllowGet);
+		}
+		[HttpGet]
+		public ActionResult GetDoctor(int id)
+		{
+			return Json(dataAccess.GetDoctor(id), JsonRequestBehavior.AllowGet);
 		}
 
 		public ActionResult Contact()
