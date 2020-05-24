@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
-import { Route } from 'react-router';
+//import { Route } from 'react-router';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-
+import Home from '../pages/Home';
+import Team from '../pages/Team';
+import About from '../pages/About';
+import Services from '../pages/Services';
 
 export default class Header extends Component {
     render() {
