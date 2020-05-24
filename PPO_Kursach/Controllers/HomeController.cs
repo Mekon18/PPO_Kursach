@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer;
 using DataAccessLayer.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace PPO_Kursach.Controllers
 		[HttpGet]
 		public ActionResult About()
 		{
-			return GetDoctors();
+			return Json(new { UserId = User.Identity.GetUserId() }, JsonRequestBehavior.AllowGet);
 		}
 
 		[HttpGet]
@@ -44,20 +45,30 @@ namespace PPO_Kursach.Controllers
 		}
 
 		public void AddDoctorsExperience(DoctorsExperience experience)
-		{			
-			dataAccess.AddDoctorsExperience(experience);			
-		}
-		
-		public ActionResult AddDoctorsAdditionalEducation(/*DoctorsAdditionalEducation AdditionalEducation*/)
 		{
-			DoctorsAdditionalEducation AdditionalEducation = new DoctorsAdditionalEducation
-			{
-				DoctorId = 1,
-				Ending = new DateTime(1990, 1, 1),
-				Name = "any"
-			};
+			dataAccess.AddDoctorsExperience(experience);
+		}
+
+		public ActionResult AddDoctorsAdditionalEducation(DoctorsAdditionalEducation AdditionalEducation)
+		{
 			dataAccess.AddDoctorsAdditionalEducation(AdditionalEducation);
 			return GetDoctor(1);
+		}
+		public ActionResult AddService(Service service)
+		{
+			dataAccess.AddService(service);
+			return GetDepartment(1);
+		}
+		public ActionResult AddRegistration(Registration registration)
+		{
+			dataAccess.AddRegistration(registration);
+			return GetUserRegistrations();
+		}
+
+		[HttpGet]
+		public ActionResult GetUserRegistrations()
+		{
+			return Json(dataAccess.GetUserRegistrations(User.Identity.GetUserId()), JsonRequestBehavior.AllowGet);
 		}
 		public ActionResult Contact()
 		{

@@ -21,7 +21,7 @@ namespace DataAccessLayer
 		{
 			using (Context db = new Context())
 			{
-				return db.Departments.Include("Doctors").Where(x => x.Id == id).FirstOrDefault();
+				return db.Departments.Include("Doctors").Include("Services").Where(x => x.Id == id).FirstOrDefault();
 			}
 		}
 
@@ -40,6 +40,29 @@ namespace DataAccessLayer
 				return db.Doctors.Include("Experiences").Include("AdditionalEducations").Where(x => x.Id == id).FirstOrDefault();
 			}
 		}
+		public IEnumerable<Registration> GetRegistrations()
+		{
+			using (Context db = new Context())
+			{
+				return db.Registrations.ToList();
+			}
+		}
+
+		public IEnumerable<Registration> GetUserRegistrations(string UserId)
+		{
+			using (Context db = new Context())
+			{
+				return db.Registrations.Include("Doctor").Include("Service").Where(x => x.UserId == UserId).ToList();
+			}
+		}
+		public void AddRegistration(Registration registration)
+		{
+			using (Context db = new Context())
+			{
+				db.Registrations.Add(registration);
+				db.SaveChanges();
+			}
+		}
 
 		public void AddDoctorsExperience(DoctorsExperience experience)
 		{
@@ -55,6 +78,14 @@ namespace DataAccessLayer
 			using (Context db = new Context())
 			{
 				db.DoctorsAdditionalEducations.Add(AdditionalEducation);
+				db.SaveChanges();
+			}
+		}
+		public void AddService(Service service)
+		{
+			using (Context db = new Context())
+			{
+				db.Services.Add(service);
 				db.SaveChanges();
 			}
 		}
