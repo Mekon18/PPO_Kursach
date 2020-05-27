@@ -1,0 +1,139 @@
+﻿@model DataAccessLayer.Models.Doctor
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Doctor</h4>
+    <hr />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <p>
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Specialty, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Specialty, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Specialty, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Category, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Experience, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Experience, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Experience, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="DepartmentId">Department</label>
+            <div class="col-md-10">
+                <select class="form-control single-line" id="DepartmentId" name="DepartmentId">
+                    @foreach (var item in ViewBag.Departments)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    }
+
+    <h3>Experiences</h3>
+    @Html.ActionLink("Create New", "Create", "DoctorExperience", new { doctorId = Model.Id }, null)
+    <table class="table">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Beginning
+            </th>
+            <th>
+                Ending
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Experiences)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Beginning)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ending)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "DoctorExperience", new { id = item.Id }, null) |
+                    @Html.ActionLink("Delete", "Delete", "DoctorExperience", new { id = item.Id, doctorId = Model.Id }, null)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <h3>AdditionalEducations</h3>
+    @Html.ActionLink("Create New", "Create", "DoctorsAdditionalEducation", new { doctorId = Model.Id }, null)
+
+    <table class="table">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Ending
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.AdditionalEducations)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ending)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "DoctorsAdditionalEducation", new { id = item.Id }, null) |
+                    @Html.ActionLink("Delete", "Delete", "DoctorsAdditionalEducation", new { id = item.Id, doctorId = Model.Id }, null)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+

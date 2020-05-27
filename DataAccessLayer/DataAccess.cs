@@ -24,6 +24,14 @@ namespace DataAccessLayer
 				return db.Departments.Include("Doctors").Include("Services").Where(x => x.Id == id).FirstOrDefault();
 			}
 		}
+		public void AddDepartment(Department department)
+		{
+			using (Context db = new Context())
+			{
+				db.Departments.Add(department);
+				db.SaveChanges();
+			}
+		}
 
 		public IEnumerable<Doctor> GetDoctors()
 		{
@@ -38,6 +46,38 @@ namespace DataAccessLayer
 			using (Context db = new Context())
 			{
 				return db.Doctors.Include("Experiences").Include("AdditionalEducations").Where(x => x.Id == id).FirstOrDefault();
+			}
+		}
+
+		public void AddDoctor(Doctor doctor)
+		{
+			using (Context db = new Context())
+			{
+				db.Doctors.Add(doctor);
+				db.SaveChanges();
+			}
+		}
+		public void EditDoctor(int id, Doctor doctor)
+		{
+			using (Context db = new Context())
+			{
+				var old = db.Doctors.Where(x => x.Id == id).FirstOrDefault();
+				old.Experience = doctor.Experience;
+				old.Category = doctor.Category;
+				old.Specialty = doctor.Specialty;
+				old.Name = doctor.Name;
+				old.DepartmentId = doctor.DepartmentId;
+
+				db.SaveChanges();
+			}
+		}
+		public void DeleteDoctor(int id)
+		{
+			using (Context db = new Context())
+			{
+				var old = db.Doctors.Where(x => x.Id == id).FirstOrDefault();
+				db.Doctors.Remove(old);
+				db.SaveChanges();
 			}
 		}
 		public IEnumerable<Registration> GetRegistrations()
@@ -66,10 +106,45 @@ namespace DataAccessLayer
 
 		public void AddDoctorsExperience(DoctorsExperience experience)
 		{
-			using(Context db = new Context())
+			using (Context db = new Context())
 			{
 				db.DoctorsExperiences.Add(experience);
 				db.SaveChanges();
+			}
+		}
+
+		public DoctorsExperience GetDoctorsExperience(int id)
+		{
+			using (Context db = new Context())
+			{
+				return db.DoctorsExperiences.Where(x => x.Id == id).FirstOrDefault();
+			}
+		}
+		public void EditDoctorsExperience(int id, DoctorsExperience doctorsExperience)
+		{
+			using (Context db = new Context())
+			{
+				var old = db.DoctorsExperiences.Where(x => x.Id == id).FirstOrDefault();
+				old.Beginning = doctorsExperience.Beginning;
+				old.Ending = doctorsExperience.Ending;
+				old.Name = doctorsExperience.Name;
+				db.SaveChanges();
+			}
+		}
+		public void DeleteDoctorsExperience(int id)
+		{
+			using (Context db = new Context())
+			{
+				var old = db.DoctorsExperiences.Where(x => x.Id == id).FirstOrDefault();
+				db.DoctorsExperiences.Remove(old);
+				db.SaveChanges();
+			}
+		}
+		public DoctorsAdditionalEducation GetDoctorsAdditionalEducation(int id)
+		{
+			using (Context db = new Context())
+			{
+				return db.DoctorsAdditionalEducations.Where(x => x.Id == id).FirstOrDefault();
 			}
 		}
 
@@ -78,6 +153,25 @@ namespace DataAccessLayer
 			using (Context db = new Context())
 			{
 				db.DoctorsAdditionalEducations.Add(AdditionalEducation);
+				db.SaveChanges();
+			}
+		}
+		public void EditDoctorsAdditionalEducation(int id, DoctorsAdditionalEducation doctorsAdditionalEducation)
+		{
+			using (Context db = new Context())
+			{
+				var old = db.DoctorsAdditionalEducations.Where(x => x.Id == id).FirstOrDefault();
+				old.Ending = doctorsAdditionalEducation.Ending;
+				old.Name = doctorsAdditionalEducation.Name;
+				db.SaveChanges();
+			}
+		}
+		public void DeleteDoctorsAdditionalEducation(int id)
+		{
+			using (Context db = new Context())
+			{
+				var old = db.DoctorsAdditionalEducations.Where(x => x.Id == id).FirstOrDefault();
+				db.DoctorsAdditionalEducations.Remove(old);
 				db.SaveChanges();
 			}
 		}
