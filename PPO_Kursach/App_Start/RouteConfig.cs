@@ -14,14 +14,16 @@ namespace PPO_Kursach
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
 			routes.MapRoute(
-				name: "Default",
-				url: "{controller}/{action}/{id}",
-				defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-			);
-			routes.MapRoute(
 				name: "Admin",
 				url: "Admin/{controller}/{action}/{id}",
-				defaults: new { controller = "Doctor", action = "Index", id = UrlParameter.Optional }
+				defaults: new { controller = "Doctor", action = "Index", id = UrlParameter.Optional },
+				namespaces: new[] { "PPO_Kursach.AdminControllers" }
+			);
+			routes.MapRoute(
+				name: "Default",
+				url: "{controller}/{action}/{id}",
+				defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+				namespaces: new[] { "PPO_Kursach.Controllers" }
 			);
 		}
 	}

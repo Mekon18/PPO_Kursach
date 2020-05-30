@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using DataAccessLayer.Models;
 
-namespace PPO_Kursach.Controllers.AdminControllers
+namespace PPO_Kursach.AdminControllers
 {
 	public class DoctorController : AdminController
 	{

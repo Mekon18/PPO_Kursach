@@ -13,7 +13,7 @@ namespace DataAccessLayer
 		{
 			using (Context db = new Context())
 			{
-				return db.Departments.Include("Doctors").ToList();
+				return db.Departments.Include("Doctors").Include("Services").ToList();
 			}
 		}
 
@@ -29,6 +29,24 @@ namespace DataAccessLayer
 			using (Context db = new Context())
 			{
 				db.Departments.Add(department);
+				db.SaveChanges();
+			}
+		}
+		public void EditDepartment(int id, Department department)
+		{
+			using (Context db = new Context())
+			{
+				var old = db.Departments.Where(x => x.Id == id).FirstOrDefault();
+				old.Name = department.Name;
+				db.SaveChanges();
+			}
+		}
+		public void DeleteDepartment(int id)
+		{
+			using (Context db = new Context())
+			{
+				var old = db.Departments.Where(x => x.Id == id).FirstOrDefault();
+				db.Departments.Remove(old);
 				db.SaveChanges();
 			}
 		}
@@ -175,11 +193,36 @@ namespace DataAccessLayer
 				db.SaveChanges();
 			}
 		}
+		public Service GetService(int id)
+		{
+			using (Context db = new Context())
+			{
+				return db.Services.Where(x => x.Id == id).FirstOrDefault();
+			}
+		}
 		public void AddService(Service service)
 		{
 			using (Context db = new Context())
 			{
 				db.Services.Add(service);
+				db.SaveChanges();
+			}
+		}
+		public void EditService(int id, Service service)
+		{
+			using (Context db = new Context())
+			{
+				var old = db.Services.Where(x => x.Id == id).FirstOrDefault();
+				old.Name = service.Name;
+				db.SaveChanges();
+			}
+		}
+		public void DeleteService(int id)
+		{
+			using (Context db = new Context())
+			{
+				var old = db.Services.Where(x => x.Id == id).FirstOrDefault();
+				db.Services.Remove(old);
 				db.SaveChanges();
 			}
 		}

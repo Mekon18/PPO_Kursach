@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using DataAccessLayer;
 using DataAccessLayer.Models;
 
-namespace PPO_Kursach.Controllers.AdminControllers
+namespace PPO_Kursach.AdminControllers
 {
     [Authorize]    
     public class AdminController : Controller

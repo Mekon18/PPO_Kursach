@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace PPO_Kursach.Controllers.AdminControllers
+namespace PPO_Kursach.AdminControllers
 {
 	public class DoctorExperienceController : AdminController
 	{
