@@ -1,14 +1,15 @@
-import { Component } from "react";
-import { CardComponent } from '../components/Card'
+import React, { Component } from 'react';
+import CardComponent from '../components/Card'
 import { CardDeck } from 'react-bootstrap'
 
 class Doctors extends Component {
+
     state = {
-        result: {}
+        result: {},
     }
 
     componentDidMount() {
-        fetch('https://localhost:44391/Home/GetDoctors')
+        fetch("https://localhost:44391/Home/GetDoctors")
             .then(res => res.json())
             .then(result => this.SetDoctors(result))
             .catch(error => error);
@@ -19,16 +20,19 @@ class Doctors extends Component {
     }
 
     render() {
-        const {hits=[]} = result
-        return(
+        const { result } = this.state
+        const { hits = [] } = result
+        console.log(result)
+        return (
             <CardDeck>
-                {hits.map(({Name, Specialty}))} =>
-                <CardComponent
-                    title={Name}
-                    text={Specialty}
-                />
+                {hits.map(({ Name, Speciality }) =>
+                    <CardComponent
+                        title={Name}
+                        text={Speciality}
+                    />)}
             </CardDeck>
         );
     }
 }
+export default Doctors;
 

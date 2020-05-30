@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Media, Row, Col } from 'react-bootstrap'
 
 function Paragraph({ title, text }) {
