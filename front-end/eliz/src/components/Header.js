@@ -12,7 +12,7 @@ export default class Header extends Component {
     render() {
         return (
             <>
-                <Navbar fixed="top" collapseOnSelect expand="md" bg="dark" variant="dark">
+                <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
                     <Container>
                         <Navbar.Brand>
                             <img height="30" width="30" className="d-inline-block align-top" />
