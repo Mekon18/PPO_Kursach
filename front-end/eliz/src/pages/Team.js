@@ -19,7 +19,7 @@ export default class Team extends Component {
                     <Col sm={9}>
                         <Tab.Content>
                             <Tab.Pane eventKey="first">
-                                <Doctors />
+                                <Doctors departmentId={1}/>
                             </Tab.Pane>
                         </Tab.Content>
                     </Col>
