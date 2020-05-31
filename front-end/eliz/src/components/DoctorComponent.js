@@ -7,22 +7,23 @@ class Doctors extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {departmentId: 1, people: []}
+        this.state = { departmentId: 1, people: [] }
     }
 
     componentDidMount() {
         console.log(this.props.departmentId)
-        axios.get(`https://localhost:44391/Home/GetDoctors?` + this.props.departmentId)
+        axios.get(`https://localhost:44391/Home/GetDepartmentsDoctors/` + this.props.departmentId)
             .then(res => {
                 const people = res.data;
-                this.setState({ people });
+                this.setState({ people: people });
             })
     }
 
     render() {
+        const people = this.state.people;
         return (
             <CardDeck>
-                {this.state.people.map(person => <CardComponent title={person.Nitle} text={person.Speciality} />)}
+                {people.map(person => <CardComponent title={person.title} text={person.userId} />)}
             </CardDeck>
         );
     }
