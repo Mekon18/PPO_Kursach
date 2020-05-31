@@ -15,6 +15,6 @@ namespace DataAccessLayer.Models
 		public int ServiceId { get; set; }
 		public Doctor Doctor { get; set; }
 		public Service Service { get; set; }
-		public string UserId { get; set; }
+		public string UserName { get; set; }
 	}
 }

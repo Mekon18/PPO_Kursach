@@ -23,6 +23,19 @@ namespace PPO_Kursach.Controllers
 		}
 
 		[HttpGet]
+		public ActionResult GetAllowedTime(int doctorId, DateTime date)
+		{
+			var data = dataAccess.GetRegistrations().Where(x => x.DoctorId == doctorId && x.AppointmentDateTime.Date == date);
+
+			var time = new List<TimeSpan>();
+			for (TimeSpan i = new TimeSpan(8, 30, 00); i < new TimeSpan(18, 00, 00); i = i.Add(new TimeSpan(0, 30, 00)))
+			{
+				time.Add(i);
+			}
+			return Json(time.Except(data.Select(x=>x.AppointmentDateTime.TimeOfDay)).Select(x=>new { x.Hours, x.Minutes,x.Seconds}), JsonRequestBehavior.AllowGet);
+		}
+
+		[HttpGet]
 		public ActionResult GetDepartmentsDoctors(int departmentId)
 		{
 			return Json(dataAccess.GetDepartment(departmentId).Doctors, JsonRequestBehavior.AllowGet);
