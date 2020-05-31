@@ -23,7 +23,7 @@ class Doctors extends Component {
         const people = this.state.people;
         return (
             <CardDeck>
-                {people.map(person => <CardComponent title={person.title} text={person.userId} />)}
+                {people.map(person => <CardComponent title={person.Name} text={person.Speciality} />)}
             </CardDeck>
         );
     }
