@@ -23,6 +23,12 @@ namespace PPO_Kursach.Controllers
 		}
 
 		[HttpGet]
+		public ActionResult GetDepartmentsDoctors(int departmentId)
+		{
+			return Json(dataAccess.GetDepartment(departmentId).Doctors, JsonRequestBehavior.AllowGet);
+		}
+
+		[HttpGet]
 		public ActionResult GetDepartments()
 		{
 			return Json(dataAccess.GetDepartments(), JsonRequestBehavior.AllowGet);
