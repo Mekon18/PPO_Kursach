@@ -5,12 +5,14 @@ import axios from 'axios';
 
 class Doctors extends Component {
 
-    state = {
-        people: []
+    constructor(props) {
+        super(props)
+        this.state = {departmentId: 1, people: []}
     }
 
     componentDidMount() {
-        axios.get(`https://localhost:44391/Home/GetDoctors`)
+        console.log(this.props.departmentId)
+        axios.get(`https://localhost:44391/Home/GetDoctors?` + this.props.departmentId)
             .then(res => {
                 const people = res.data;
                 this.setState({ people });
