@@ -1,6 +1,7 @@
 ﻿using DataAccessLayer;
 using DataAccessLayer.Models;
 using Microsoft.AspNet.Identity;
+using PPO_Kursach.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,32 @@ namespace PPO_Kursach.Controllers
 		public ActionResult About()
 		{
 			return Json(new { UserId = User.Identity.GetUserId() }, JsonRequestBehavior.AllowGet);
+		}
+
+		[HttpGet]
+		public ActionResult GetAllowedTime(int doctorId, DateTime date)
+		{
+			var data = dataAccess.GetRegistrations().Where(x => x.DoctorId == doctorId && x.AppointmentDateTime.Date == date);
+
+			var time = new List<TimeSpan>();
+			for (TimeSpan i = new TimeSpan(8, 30, 00); i < new TimeSpan(18, 00, 00); i = i.Add(new TimeSpan(0, 30, 00)))
+			{
+				time.Add(i);
+			}
+			return Json(time.Except(data.Select(x => x.AppointmentDateTime.TimeOfDay)).Select(x => new { x.Hours, x.Minutes, x.Seconds }), JsonRequestBehavior.AllowGet);
+		}
+
+		[HttpPost]
+		public void addRegistration(RegistrationViewModel registration)
+		{
+			var newReg = new Registration()
+			{
+				DoctorId = registration.DoctorId,
+				ServiceId = registration.ServiceId,
+				UserName = registration.UserName,
+				AppointmentDateTime = registration.Date.Add(registration.time)
+			};
+			dataAccess.AddRegistration(newReg);
 		}
 
 		[HttpGet]

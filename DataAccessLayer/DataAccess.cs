@@ -106,11 +106,11 @@ namespace DataAccessLayer
 			}
 		}
 
-		public IEnumerable<Registration> GetUserRegistrations(string UserId)
+		public IEnumerable<Registration> GetUserRegistrations(string UserName)
 		{
 			using (Context db = new Context())
 			{
-				return db.Registrations.Include("Doctor").Include("Service").Where(x => x.UserId == UserId).ToList();
+				return db.Registrations.Include("Doctor").Include("Service").Where(x => x.UserName == UserName).ToList();
 			}
 		}
 		public void AddRegistration(Registration registration)
