@@ -1,6 +1,7 @@
 ﻿using DataAccessLayer;
 using DataAccessLayer.Models;
 using Microsoft.AspNet.Identity;
+using PPO_Kursach.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,20 @@ namespace PPO_Kursach.Controllers
 			{
 				time.Add(i);
 			}
-			return Json(time.Except(data.Select(x=>x.AppointmentDateTime.TimeOfDay)).Select(x=>new { x.Hours, x.Minutes,x.Seconds}), JsonRequestBehavior.AllowGet);
+			return Json(time.Except(data.Select(x => x.AppointmentDateTime.TimeOfDay)).Select(x => new { x.Hours, x.Minutes, x.Seconds }), JsonRequestBehavior.AllowGet);
+		}
+
+		[HttpPost]
+		public void addRegistration(RegistrationViewModel registration)
+		{
+			var newReg = new Registration()
+			{
+				DoctorId = registration.DoctorId,
+				ServiceId = registration.ServiceId,
+				UserName = registration.UserName,
+				AppointmentDateTime = registration.Date.Add(registration.time)
+			};
+			dataAccess.AddRegistration(newReg);
 		}
 
 		[HttpGet]
