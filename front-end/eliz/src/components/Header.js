@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import logo from '../assets/logo192.png'
 import Home from '../pages/Home';
 import Team from '../pages/Team';
-import About from '../pages/About';
+import About from '../pages/Appointment';
 import Services from '../pages/Services';
 
 export default class Header extends Component {
@@ -24,7 +24,7 @@ export default class Header extends Component {
                                 <Nav.Link href="/">Главная</Nav.Link>
                                 <Nav.Link href="/services">Услуги</Nav.Link>
                                 <Nav.Link href="/team">Врачи</Nav.Link>
-                                <Nav.Link href="/about">О нас</Nav.Link>
+                                <Nav.Link href="/appointment">Запись на приём</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
@@ -34,7 +34,7 @@ export default class Header extends Component {
                         <Route exact path="/" component={Home}/>
                         <Route exact path="/services" component={Services}/>
                         <Route exact path="/team" component={Team}/>
-                        <Route exact path="/about" component={About}/>
+                        <Route exact path="/appointment" component={About}/>
                     </Switch>
                 </Router>
             </>
