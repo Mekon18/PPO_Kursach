@@ -57,7 +57,7 @@ class AppointmentForm extends Component {
     }
 
     componentDidMount() {
-        axios.get(`https://jsonplaceholder.typicode.com/todos`)
+        axios.get(`https://localhost:44391/Home/GetDepartments`)
             .then(res => {
                 const departments = res.data;
                 this.setState({ departments: departments });
@@ -67,7 +67,7 @@ class AppointmentForm extends Component {
     selectChangeHandler(event) {
         this.setState({ selectedDepartment: event.target.value });
         console.log(this.state.selectedDepartment);
-        axios.get(`https://jsonplaceholder.typicode.com/todos`)
+        axios.get(`https://localhost:44391/Home/GetDepartmentsDoctors/` + event.target.value)
             .then(res => {
                 const people = res.data;
                 this.setState({ people: people });
@@ -95,12 +95,12 @@ class AppointmentForm extends Component {
                 <Form.Row>
                     <Form.Group as={Col} controlId="formGridState">
                         <Form.Control as="select" value={this.state.selectedDepartment} onChange={this.selectChangeHandler}>
-                            {this.state.departments.map(department => <option value={department.id}>{department.id}</option>)}
+                            {this.state.departments.map(department => <option value={department.Id}>{department.Name}</option>)}
                         </Form.Control>
                     </Form.Group>
                     <Form.Group as={Col} controlId="formGridState">
                         <Form.Control as="select" value={this.state.selectedDoctor} onChange={this.selectDoctorChangeHandler}>
-                            {this.state.people.map(person => <option value={person.id}>{person.title}</option>)}
+                            {this.state.people.map(person => <option value={person.Id}>{person.Name}</option>)}
                         </Form.Control>
                     </Form.Group>
                 </Form.Row>

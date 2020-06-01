@@ -33,11 +33,11 @@ namespace PPO_Kursach.Controllers
 			{
 				time.Add(i);
 			}
-			return Json(time.Except(data.Select(x => x.AppointmentDateTime.TimeOfDay)).Select(x => new { x.Hours, x.Minutes, x.Seconds }), JsonRequestBehavior.AllowGet);
+			return Json(time.Except(data.Select(x => x.AppointmentDateTime.TimeOfDay)).Select(x => new { time = x.ToString(@"hh\:mm") }), JsonRequestBehavior.AllowGet);
 		}
 
 		[HttpPost]
-		public void addRegistration(RegistrationViewModel registration)
+		public void AddRegistration(RegistrationViewModel registration)
 		{
 			var newReg = new Registration()
 			{
