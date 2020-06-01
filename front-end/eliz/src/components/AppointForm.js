@@ -56,9 +56,10 @@ class AppointmentForm extends Component {
         console.log(this.state.selectedDay);
         console.log(this.state.selectedDoctor);
         console.log(this.state.selectedTime);
+        console.log(this.state.selectedService);
         axios.post('https://localhost:44391/Home/AddRegistration?DoctorId='
             + this.state.selectedDoctor
-            + '&ServiceId=' + 0 + '&UserName=' + this.state.name
+            + '&ServiceId=' + this.state.selectedService + '&UserName=' + this.state.name
             + '&Date=' + this.state.selectedDay + '&time=' + this.state.selectedTime);
     }
 
