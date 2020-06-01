@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace PPO_Kursach.Controllers
-{
+{	
 	public class HomeController : Controller
 	{
 		private DataAccess dataAccess = new DataAccess();
@@ -50,9 +50,9 @@ namespace PPO_Kursach.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult GetDepartmentsDoctors(int departmentId)
+		public ActionResult GetDepartmentsDoctors(int id)
 		{
-			return Json(dataAccess.GetDepartment(departmentId).Doctors, JsonRequestBehavior.AllowGet);
+			return Json(dataAccess.GetDepartment(id).Doctors, JsonRequestBehavior.AllowGet);
 		}
 
 		[HttpGet]
