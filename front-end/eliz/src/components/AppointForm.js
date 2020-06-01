@@ -13,10 +13,12 @@ class AppointmentForm extends Component {
             people: [],
             departments: [],
             time: [],
+            services: [],
             selectedDepartment: undefined,
             selectedDoctor: undefined,
             selectedDay: undefined,
-            selectedTime: undefined
+            selectedTime: undefined,
+            selectedService: undefined
         }
         this.selectChangeHandler = this.selectChangeHandler.bind(this);
         this.selectDoctorChangeHandler = this.selectDoctorChangeHandler.bind(this);
@@ -54,10 +56,10 @@ class AppointmentForm extends Component {
         console.log(this.state.selectedDay);
         console.log(this.state.selectedDoctor);
         console.log(this.state.selectedTime);
-        axios.post('https://localhost:44391/Home/AddRegistration?DoctorId=' 
-        + this.state.selectedDoctor 
-        + '&ServiceId=' + 0 + '&UserName=' + this.state.name 
-        + '&Date=' + this.state.selectedDay + '&time=' + this.state.selectedTime);
+        axios.post('https://localhost:44391/Home/AddRegistration?DoctorId='
+            + this.state.selectedDoctor
+            + '&ServiceId=' + 0 + '&UserName=' + this.state.name
+            + '&Date=' + this.state.selectedDay + '&time=' + this.state.selectedTime);
     }
 
     componentDidMount() {
@@ -76,11 +78,21 @@ class AppointmentForm extends Component {
                 const people = res.data;
                 this.setState({ people: people });
             })
+        axios.get(`https://localhost:44391/Home/GetDepartmentsServices/` + event.target.value)
+            .then(res => {
+                const services = res.data;
+                this.setState({ services: services });
+            })
     }
 
     selectDoctorChangeHandler(event) {
         this.setState({ selectedDoctor: event.target.value });
         console.log(this.state.selectedDoctor);
+    }
+
+    selectServiceChangeHandler(event) {
+        this.setState({ selectedService: event.target.value });
+        console.log(this.state.selectedService);
     }
 
     selectTimeChangeHandler(event) {
@@ -97,6 +109,11 @@ class AppointmentForm extends Component {
                 </Form.Row>
 
                 <Form.Row>
+                    <Form.Group as={Col} controlId="formGridState">
+                        <Form.Control as="select" value={this.state.selectedService} onChange={this.selectChangeHandler}>
+                            {this.state.services.map(service => <option value={service.Id}>{service.Name}</option>)}
+                        </Form.Control>
+                    </Form.Group>
                     <Form.Group as={Col} controlId="formGridState">
                         <Form.Control as="select" value={this.state.selectedDepartment} onChange={this.selectChangeHandler}>
                             {this.state.departments.map(department => <option value={department.Id}>{department.Name}</option>)}
