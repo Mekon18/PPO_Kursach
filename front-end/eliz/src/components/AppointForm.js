@@ -31,13 +31,13 @@ class AppointmentForm extends Component {
             this.setState({ selectedDay: undefined });
             return;
         }
-        this.setState({ selectedDay: day });
+        this.setState({ selectedDay: day.toLocaleDateString().split('.').join('-') });
         if (this.state.selectedDoctor !== undefined && this.state.selectedDay !== undefined) {
-            axios.get('https://jsonplaceholder.typicode.com/todos')
+            axios.get('https://localhost:44391/Home/GetAllowedTime?date=' + this.state.selectedDay + '&doctorId=' + this.state.selectedDoctor)
                 .then(res => {
                     const times = res.data;
                     this.setState({ time: times });
-                    this.setState({ selectedTime: times[0].id })
+                    this.setState({ selectedTime: times[0].time })
                 })
         }
     }
@@ -51,9 +51,13 @@ class AppointmentForm extends Component {
     handleSubmit(event) {
         event.preventDefault();
         console.log(this.state.name);
-        console.log(this.state.selectedDay.toLocaleDateString().split('.').join('-'));
+        console.log(this.state.selectedDay);
         console.log(this.state.selectedDoctor);
-        //axios.post(`${axios.defaults.baseURL}/people`, { user });
+        console.log(this.state.selectedTime);
+        axios.post('https://localhost:44391/Home/AddRegistration?DoctorId=' 
+        + this.state.selectedDoctor 
+        + '&ServiceId=' + 0 + '&UserName=' + this.state.name 
+        + '&Date=' + this.state.selectedDay + '&time=' + this.state.selectedTime);
     }
 
     componentDidMount() {
@@ -111,7 +115,7 @@ class AppointmentForm extends Component {
                     </Form.Group>
                     <Form.Group as={Col} controlId="formGridState">
                         <Form.Control as="select" value={this.state.selectedTime} onChange={this.selectTimeChangeHandler}>
-                            {this.state.time.map(time => <option value={time.id}>{time.id}</option>)}
+                            {this.state.time.map(time => <option value={time.time}>{time.time}</option>)}
                         </Form.Control>
                     </Form.Group>
                 </Form.Row>
