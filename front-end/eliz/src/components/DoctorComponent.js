@@ -3,6 +3,9 @@ import CardComponent from '../components/Card'
 import { CardDeck } from 'react-bootstrap'
 import axios from 'axios';
 
+import miha from '../components/docIcons/2.png';
+import sveta from '../components/docIcons/4.png';
+
 class Doctors extends Component {
 
     constructor(props) {
@@ -23,7 +26,7 @@ class Doctors extends Component {
         const people = this.state.people;
         return (
             <CardDeck>
-                {people.map(person => <CardComponent title={person.Name} text={person.Speciality} />)}
+                {people.map(person => <CardComponent image={person.Id == 2 ? miha : sveta}title={person.Name} text={person.Speciality} />)}
             </CardDeck>
         );
     }
