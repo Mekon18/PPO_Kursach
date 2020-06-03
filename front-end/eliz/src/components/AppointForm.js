@@ -78,7 +78,7 @@ class AppointmentForm extends Component {
     selectChangeHandler(event) {
         this.setState({ selectedDepartment: event.target.value });
         console.log(this.state.selectedDepartment);
-        axios.get(`https://localhost:44391/Home/GetDepartmentsDoctors/` + event.target.value)
+        axios.get(`https://localhost:44391/Home/GetDepartmentsDoctors/` + this.state.selectedDoctor)
             .then(res => {
                 const people = res.data;
                 this.setState({ people: people });
