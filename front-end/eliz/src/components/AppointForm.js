@@ -40,7 +40,7 @@ class AppointmentForm extends Component {
         }
         this.setState({ selectedDay: day });
         if (this.state.selectedDoctor !== undefined && this.state.selectedDay !== undefined) {
-            axios.get('https://localhost:44391/Home/GetAllowedTime?date=' + this.state.selectedDay + '&doctorId=' + this.state.selectedDoctor)
+            axios.get('https://localhost:44391/Home/GetAllowedTime?date=' + this.state.selectedDay.toLocaleDateString().split('.').join('-') + '&doctorId=' + this.state.selectedDoctor)
                 .then(res => {
                     const times = res.data;
                     this.setState({ time: times });
@@ -97,13 +97,13 @@ class AppointmentForm extends Component {
             .then(res => {
                 const people = res.data;
                 this.setState({ people: people });
-                this.setState({selectedDoctor: people[0]})
+                this.setState({selectedDoctor: people[0].Id})
             })
         axios.get(`https://localhost:44391/Home/GetDepartmentsServices/` + event.target.value)
             .then(res => {
                 const services = res.data;
                 this.setState({ services: services });
-                this.setState({selectedService: services[0]})
+                this.setState({selectedService: services[0].Id})
             })
     }
 
