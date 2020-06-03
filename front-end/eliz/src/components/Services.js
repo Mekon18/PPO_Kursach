@@ -10,7 +10,7 @@ class Services extends Component {
     }
 
     componentDidMount() {
-        axios.get(`https://jsonplaceholder.typicode.com/posts`)
+        axios.get(`https://localhost:44391/Home/GetDepartments`)
             .then(res => {
                 const services = res.data;
                 this.setState({ services: services });
@@ -20,7 +20,7 @@ class Services extends Component {
     render() {
         return (
             <Row>
-                {this.state.services.map(service => <Col md={4}><div className="text-center"><img src="logo192.png" className="mr-4" /><h6>{service.title}</h6></div></Col>)}
+                {this.state.services.map(service => <Col md={4}><div className="text-center"><img src={"depIcons/" + service.Id + ".png"} className="mr-4" /><h6>{service.Name}</h6></div></Col>)}
             </Row>
         );
     }
