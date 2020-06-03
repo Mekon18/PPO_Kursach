@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import axios from 'axios';
 import Doctors from '../components/DoctorComponent'
 
