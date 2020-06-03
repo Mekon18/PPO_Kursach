@@ -28,6 +28,7 @@ class AppointmentForm extends Component {
         this.handleDayClick = this.handleDayClick.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.selectTimeChangeHandler = this.selectTimeChangeHandler.bind(this);
+        this.selectServiceChangeHandler = this.selectServiceChangeHandler.bind(this);
     }
 
     handleDayClick(day, { selected }) {
