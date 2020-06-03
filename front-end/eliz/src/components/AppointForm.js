@@ -106,77 +106,81 @@ class AppointmentForm extends Component {
 
     render() {
         return (
-            <Form onSubmit={this.handleSubmit}>
-                <h5>ФИО:</h5>
-                <Form.Row>
-                    <Col lg={4}>
-                        <Form.Group controlId="formGridName">
-                            <Form.Control required placeholder="Имя" name="name" value={this.state.name} onChange={this.handeInputChange} />
-                        </Form.Group>
-                    </Col>
-                    <Col lg={4}>
-                        <Form.Group>
-                            <Form.Control required placeholder="Фамилия" name="surname" value={this.state.surname} onChange={this.handeInputChange} />
-                        </Form.Group>
-                    </Col>
-                    <Col lg={4}>
-                        <Form.Group>
-                            <Form.Control required placeholder="Отчество" name="fathername" value={this.state.fathername} onChange={this.handeInputChange} />
-                        </Form.Group>
-                    </Col>
+            <Row className="mb-4">
+                <Col>
+                    <Form onSubmit={this.handleSubmit}>
+                        <h5>ФИО:</h5>
+                        <Form.Row>
+                            <Col lg={4}>
+                                <Form.Group controlId="formGridName">
+                                    <Form.Control required placeholder="Имя" name="name" value={this.state.name} onChange={this.handeInputChange} />
+                                </Form.Group>
+                            </Col>
+                            <Col lg={4}>
+                                <Form.Group>
+                                    <Form.Control required placeholder="Фамилия" name="surname" value={this.state.surname} onChange={this.handeInputChange} />
+                                </Form.Group>
+                            </Col>
+                            <Col lg={4}>
+                                <Form.Group>
+                                    <Form.Control required placeholder="Отчество" name="fathername" value={this.state.fathername} onChange={this.handeInputChange} />
+                                </Form.Group>
+                            </Col>
 
 
-                </Form.Row>
-                <Form.Row>
-                    <Col lg={4}>
-                        <Form.Group controlId="formGridState">
-                            <h5>Выберите отделение:</h5>
-                            <Form.Control required as="select" value={this.state.selectedService} onChange={this.selectChangeHandler}>
-                                {this.state.services.map(service => <option value={service.Id}>{service.Name}</option>)}
-                            </Form.Control>
-                        </Form.Group>
-                    </Col>
-                    <Col lg={4}>
-                        <Form.Group controlId="formGridState">
-                            <h5>Выберите услугу:</h5>
-                            <Form.Control required as="select" value={this.state.selectedDepartment} onChange={this.selectChangeHandler}>
-                                {this.state.departments.map(department => <option value={department.Id}>{department.Name}</option>)}
-                            </Form.Control>
-                        </Form.Group>
-                    </Col>
-                    <Col lg={4}>
-                        <Form.Group controlId="formGridState">
-                            <h5>Выберите врача:</h5>
-                            <Form.Control required as="select" value={this.state.selectedDoctor} onChange={this.selectDoctorChangeHandler}>
-                                {this.state.people.map(person => <option value={person.Id}>{person.Name}</option>)}
-                            </Form.Control>
-                        </Form.Group>
-                    </Col>
-                </Form.Row>
+                        </Form.Row>
+                        <Form.Row>
+                            <Col lg={4}>
+                                <Form.Group controlId="formGridState">
+                                    <h5>Выберите отделение:</h5>
+                                    <Form.Control required as="select" value={this.state.selectedService} onChange={this.selectChangeHandler}>
+                                        {this.state.services.map(service => <option value={service.Id}>{service.Name}</option>)}
+                                    </Form.Control>
+                                </Form.Group>
+                            </Col>
+                            <Col lg={4}>
+                                <Form.Group controlId="formGridState">
+                                    <h5>Выберите услугу:</h5>
+                                    <Form.Control required as="select" value={this.state.selectedDepartment} onChange={this.selectChangeHandler}>
+                                        {this.state.departments.map(department => <option value={department.Id}>{department.Name}</option>)}
+                                    </Form.Control>
+                                </Form.Group>
+                            </Col>
+                            <Col lg={4}>
+                                <Form.Group controlId="formGridState">
+                                    <h5>Выберите врача:</h5>
+                                    <Form.Control required as="select" value={this.state.selectedDoctor} onChange={this.selectDoctorChangeHandler}>
+                                        {this.state.people.map(person => <option value={person.Id}>{person.Name}</option>)}
+                                    </Form.Control>
+                                </Form.Group>
+                            </Col>
+                        </Form.Row>
 
-                <Form.Row>
-                    <Col>
-                    <h5>Выберите дату:</h5>
-                        <Form.Group as={Col} controlId="formGridState">
-                            
-                            <DayPicker required onDayClick={this.handleDayClick} selectedDay={this.state.selectedDay} />
-                        </Form.Group>
-                    </Col>
-                    <Col lg={6}>
-                    <h5>Выберите время:</h5>
-                        <Form.Group as={Col}controlId="formGridState">
-                            
-                            <Form.Control as="select" value={this.state.selectedTime} onChange={this.selectTimeChangeHandler}>
-                                {this.state.time.map(time => <option value={time.time}>{time.time}</option>)}
-                            </Form.Control>
-                        </Form.Group>
-                    </Col>
-                </Form.Row>
+                        <Form.Row>
+                            <Col>
+                                <h5>Выберите дату:</h5>
+                                <Form.Group as={Col} controlId="formGridState">
 
-                <Button variant="primary" type="submit">
-                    Записаться
+                                    <DayPicker required onDayClick={this.handleDayClick} selectedDay={this.state.selectedDay} />
+                                </Form.Group>
+                            </Col>
+                            <Col lg={6}>
+                                <h5>Выберите время:</h5>
+                                <Form.Group as={Col} controlId="formGridState">
+
+                                    <Form.Control as="select" value={this.state.selectedTime} onChange={this.selectTimeChangeHandler}>
+                                        {this.state.time.map(time => <option value={time.time}>{time.time}</option>)}
+                                    </Form.Control>
+                                </Form.Group>
+                            </Col>
+                        </Form.Row>
+
+                        <Button variant="primary" type="submit">
+                            Записаться
                 </Button>
-            </Form >
+                    </Form >
+                </Col>
+            </Row>
         );
     }
 }
