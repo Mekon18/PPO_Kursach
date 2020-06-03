@@ -22,7 +22,7 @@ class Services extends Component {
     render() {
         return (
             <Row>
-                {this.state.services.map(service => <Col md={4}><div className="text-center"><img src={"e:/Универ/ППО/Курсач/front-end/eliz/src/components/depIcons/" + service.Id + ".png"} className="mr-4" /><h6>{service.Name}</h6></div></Col>)}
+                {this.state.services.map(service => <Col md={4}><div className="text-center"><img src={service.Id == 1 ? nevrologic : ortopedic} className="mr-4" /><h6>{service.Name}</h6></div></Col>)}
             </Row>
         );
     }
