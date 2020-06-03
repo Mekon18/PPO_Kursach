@@ -37,14 +37,12 @@ class AppointmentForm extends Component {
             return;
         }
         this.setState({ selectedDay: day });
-        if (this.state.selectedDoctor !== undefined && this.state.selectedDay !== undefined) {
-            axios.get('https://localhost:44391/Home/GetAllowedTime?date=' + this.state.selectedDay + '&doctorId=' + this.state.selectedDoctor)
-                .then(res => {
-                    const times = res.data;
-                    this.setState({ time: times });
-                    this.setState({ selectedTime: times[0].time })
-                })
-        }
+        axios.get('https://localhost:44391/Home/GetAllowedTime?date=' + this.state.selectedDay + '&doctorId=' + this.state.selectedDoctor)
+            .then(res => {
+                const times = res.data;
+                this.setState({ time: times });
+                this.setState({ selectedTime: times[0].time })
+            })
     }
 
     handeInputChange = ({ target: { value } }) => {
@@ -72,6 +70,19 @@ class AppointmentForm extends Component {
             .then(res => {
                 const departments = res.data;
                 this.setState({ departments: departments });
+                this.setState({ selectedDepartment: departments[0].Id });
+            })
+        axios.get(`https://localhost:44391/Home/GetDepartmentsDoctors/` + this.state.selectedDepartment)
+            .then(res => {
+                const people = res.data;
+                this.setState({ people: people });
+                this.setState({ selectedDoctor: people[0].Id })
+            })
+        axios.get(`https://localhost:44391/Home/GetDepartmentsServices/` + this.state.selectedDepartment)
+            .then(res => {
+                const services = res.data;
+                this.setState({ services: services });
+                this.setState({ selectedService: services[0].Id })
             })
     }
 
@@ -83,11 +94,13 @@ class AppointmentForm extends Component {
             .then(res => {
                 const people = res.data;
                 this.setState({ people: people });
+                this.setState({ selectedDoctor: people[0] })
             })
         axios.get(`https://localhost:44391/Home/GetDepartmentsServices/` + event.target.value)
             .then(res => {
                 const services = res.data;
                 this.setState({ services: services });
+                this.setState({ selectedService: services[0] })
             })
     }
 
@@ -114,17 +127,17 @@ class AppointmentForm extends Component {
                         <Form.Row>
                             <Col lg={4}>
                                 <Form.Group controlId="formGridName">
-                                    <Form.Control required placeholder="Имя" name="name" value={this.state.name} onChange={this.handeInputChange} />
+                                    <Form.Control placeholder="Имя" name="name" value={this.state.name} onChange={this.handeInputChange} />
                                 </Form.Group>
                             </Col>
                             <Col lg={4}>
                                 <Form.Group>
-                                    <Form.Control required placeholder="Фамилия" name="surname" value={this.state.surname} onChange={this.handeInputChange} />
+                                    <Form.Control placeholder="Фамилия" name="surname" value={this.state.surname} onChange={this.handeInputChange} />
                                 </Form.Group>
                             </Col>
                             <Col lg={4}>
                                 <Form.Group>
-                                    <Form.Control required placeholder="Отчество" name="fathername" value={this.state.fathername} onChange={this.handeInputChange} />
+                                    <Form.Control placeholder="Отчество" name="fathername" value={this.state.fathername} onChange={this.handeInputChange} />
                                 </Form.Group>
                             </Col>
 
@@ -134,7 +147,7 @@ class AppointmentForm extends Component {
                             <Col lg={4}>
                                 <Form.Group controlId="formGridState">
                                     <h5>Выберите отделение:</h5>
-                                    <Form.Control required as="select" value={this.state.selectedService} onChange={this.selectChangeHandler}>
+                                    <Form.Control as="select" value={this.state.selectedService} onChange={this.selectChangeHandler}>
                                         {this.state.departments.map(department => <option value={department.Id}>{department.Name}</option>)}
                                     </Form.Control>
                                 </Form.Group>
@@ -142,7 +155,7 @@ class AppointmentForm extends Component {
                             <Col lg={4}>
                                 <Form.Group controlId="formGridState">
                                     <h5>Выберите услугу:</h5>
-                                    <Form.Control required as="select" value={this.state.selectedDepartment} onChange={this.selectServiceChangeHandler}>
+                                    <Form.Control as="select" value={this.state.selectedDepartment} onChange={this.selectServiceChangeHandler}>
                                         {this.state.services.map(service => <option value={service.Id}>{service.Name}</option>)}
                                     </Form.Control>
                                 </Form.Group>
@@ -150,7 +163,7 @@ class AppointmentForm extends Component {
                             <Col lg={4}>
                                 <Form.Group controlId="formGridState">
                                     <h5>Выберите врача:</h5>
-                                    <Form.Control required as="select" value={this.state.selectedDoctor} onChange={this.selectDoctorChangeHandler}>
+                                    <Form.Control as="select" value={this.state.selectedDoctor} onChange={this.selectDoctorChangeHandler}>
                                         {this.state.people.map(person => <option value={person.Id}>{person.Name}</option>)}
                                     </Form.Control>
                                 </Form.Group>
@@ -161,7 +174,7 @@ class AppointmentForm extends Component {
                             <Col>
                                 <h5>Выберите дату:</h5>
                                 <Form.Group as={Col} controlId="formGridState">
-                                    <DayPicker required onDayClick={this.handleDayClick} selectedDay={this.state.selectedDay} />
+                                    <DayPicker onDayClick={this.handleDayClick} selectedDay={this.state.selectedDay} />
                                 </Form.Group>
                             </Col>
                             <Col lg={6}>
