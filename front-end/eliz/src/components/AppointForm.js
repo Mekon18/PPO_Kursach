@@ -24,37 +24,53 @@ class AppointmentForm extends Component {
         }
         this.selectChangeHandler = this.selectChangeHandler.bind(this);
         this.selectDoctorChangeHandler = this.selectDoctorChangeHandler.bind(this);
-        this.handeInputChange = this.handeInputChange.bind(this);
         this.handleDayClick = this.handleDayClick.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.selectTimeChangeHandler = this.selectTimeChangeHandler.bind(this);
         this.selectServiceChangeHandler = this.selectServiceChangeHandler.bind(this);
+        this.handleNameInputChange = this.handleNameInputChange.bind(this);
+        this.handleSurnameInputChange = this.handleSurnameInputChange.bind(this);
+        this.handleFatherNameInputChange = this.handleFatherNameInputChange.bind(this);
     }
 
     handleDayClick(day, { selected }) {
         if (selected) {
-            this.setState({ selectedDay: undefined });
-            return;
+          this.setState({ selectedDay: undefined });
+          return;
         }
         this.setState({ selectedDay: day });
-        axios.get('https://localhost:44391/Home/GetAllowedTime?date=' + this.state.selectedDay + '&doctorId=' + this.state.selectedDoctor)
-            .then(res => {
-                const times = res.data;
-                this.setState({ time: times });
-                this.setState({ selectedTime: times[0].time })
-            })
+        if (this.state.selectedDoctor !== undefined && this.state.selectedDay !== undefined) {
+            axios.get('https://localhost:44391/Home/GetAllowedTime?date=' + this.state.selectedDay + '&doctorId=' + this.state.selectedDoctor)
+                .then(res => {
+                    const times = res.data;
+                    this.setState({ time: times });
+                    this.setState({ selectedTime: times[0].time })
+                })
+        }
     }
 
-    handeInputChange = ({ target: { value } }) => {
+    handleNameInputChange = ({ target: { value } }) => {
         this.setState({
-            inputText: value
+            name: value
+        })
+    }
+
+    handleSurnameInputChange = ({ target: { value } }) => {
+        this.setState({
+            surname: value
+        })
+    }
+
+    handleFatherNameInputChange = ({ target: { value } }) => {
+        this.setState({
+            fathername: value
         })
     }
 
     handleSubmit(event) {
         event.preventDefault();
         console.log(this.state.name + ' ' + this.state.surname + ' ' + this.state.fathername);
-        console.log(this.state.selectedDay);
+        console.log(this.state.selectedDay.toLocaleDateString().split('.').join('-'));
         console.log(this.state.selectedDoctor);
         console.log(this.state.selectedTime);
         console.log(this.state.selectedService);
@@ -70,19 +86,6 @@ class AppointmentForm extends Component {
             .then(res => {
                 const departments = res.data;
                 this.setState({ departments: departments });
-                this.setState({ selectedDepartment: departments[0].Id });
-            })
-        axios.get(`https://localhost:44391/Home/GetDepartmentsDoctors/` + this.state.selectedDepartment)
-            .then(res => {
-                const people = res.data;
-                this.setState({ people: people });
-                this.setState({ selectedDoctor: people[0].Id })
-            })
-        axios.get(`https://localhost:44391/Home/GetDepartmentsServices/` + this.state.selectedDepartment)
-            .then(res => {
-                const services = res.data;
-                this.setState({ services: services });
-                this.setState({ selectedService: services[0].Id })
             })
     }
 
@@ -94,13 +97,13 @@ class AppointmentForm extends Component {
             .then(res => {
                 const people = res.data;
                 this.setState({ people: people });
-                this.setState({ selectedDoctor: people[0] })
+                this.setState({selectedDoctor: people[0]})
             })
         axios.get(`https://localhost:44391/Home/GetDepartmentsServices/` + event.target.value)
             .then(res => {
                 const services = res.data;
                 this.setState({ services: services });
-                this.setState({ selectedService: services[0] })
+                this.setState({selectedService: services[0]})
             })
     }
 
@@ -127,17 +130,17 @@ class AppointmentForm extends Component {
                         <Form.Row>
                             <Col lg={4}>
                                 <Form.Group controlId="formGridName">
-                                    <Form.Control placeholder="Имя" name="name" value={this.state.name} onChange={this.handeInputChange} />
+                                    <Form.Control placeholder="Имя" name="name" value={this.state.name} onChange={this.handleNameInputChange} />
                                 </Form.Group>
                             </Col>
                             <Col lg={4}>
                                 <Form.Group>
-                                    <Form.Control placeholder="Фамилия" name="surname" value={this.state.surname} onChange={this.handeInputChange} />
+                                    <Form.Control placeholder="Фамилия" name="surname" value={this.state.surname} onChange={this.handleSurnameInputChange} />
                                 </Form.Group>
                             </Col>
                             <Col lg={4}>
                                 <Form.Group>
-                                    <Form.Control placeholder="Отчество" name="fathername" value={this.state.fathername} onChange={this.handeInputChange} />
+                                    <Form.Control placeholder="Отчество" name="fathername" value={this.state.fathername} onChange={this.handleFatherNameInputChange} />
                                 </Form.Group>
                             </Col>
 
