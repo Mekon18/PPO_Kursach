@@ -12,7 +12,7 @@ class DepartmentsAndDoctors extends Component {
 
     componentDidMount() {
         console.log(this.props.departmentId)
-        axios.get(`https://jsonplaceholder.typicode.com/todos`)
+        axios.get(`https://localhost:44391/Home/GetDepartments`)
             .then(res => {
                 const departments = res.data;
                 console.log(departments)
