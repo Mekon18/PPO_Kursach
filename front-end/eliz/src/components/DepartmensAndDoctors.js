@@ -3,7 +3,7 @@ import { Row } from 'react-bootstrap'
 import axios from 'axios';
 import Doctors from '../components/DoctorComponent'
 
-class Doctors extends Component {
+class DepartmentsAndDoctors extends Component {
 
     constructor(props) {
         super(props)
@@ -39,4 +39,4 @@ class Doctors extends Component {
         );
     }
 }
-export default Doctors;
+export default DepartmentsAndDoctors;
