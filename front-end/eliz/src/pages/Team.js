@@ -6,7 +6,9 @@ export default class Team extends Component {
     render() {
         return (
             <Container>
-                <DepartmensAndDoctors />
+                <div className="mt-5">
+                    <DepartmensAndDoctors />
+                </div>
             </Container>
         )
     }
