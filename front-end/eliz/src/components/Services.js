@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Col, Row } from 'react-bootstrap'
+import nevrologic from '../components/depIcons/1.png'
+import ortopedic from '../components/depIcons/3.png'
 
 class Services extends Component {
 
@@ -20,7 +22,7 @@ class Services extends Component {
     render() {
         return (
             <Row>
-                {this.state.services.map(service => <Col md={4}><div className="text-center"><img src={"depIcons/" + service.Id + ".png"} className="mr-4" /><h6>{service.Name}</h6></div></Col>)}
+                {this.state.services.map(service => <Col md={4}><div className="text-center"><img src={"../components/depIcons/" + service.Id + ".png"} className="mr-4" /><h6>{service.Name}</h6></div></Col>)}
             </Row>
         );
     }
