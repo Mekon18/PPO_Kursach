@@ -134,7 +134,7 @@ class AppointmentForm extends Component {
                                 <Form.Group controlId="formGridState">
                                     <h5>Выберите отделение:</h5>
                                     <Form.Control required as="select" value={this.state.selectedService} onChange={this.selectChangeHandler}>
-                                        {this.state.services.map(service => <option value={service.Id}>{service.Name}</option>)}
+                                        {this.state.departments.map(department => <option value={department.Id}>{department.Name}</option>)}
                                     </Form.Control>
                                 </Form.Group>
                             </Col>
@@ -142,7 +142,7 @@ class AppointmentForm extends Component {
                                 <Form.Group controlId="formGridState">
                                     <h5>Выберите услугу:</h5>
                                     <Form.Control required as="select" value={this.state.selectedDepartment} onChange={this.selectChangeHandler}>
-                                        {this.state.departments.map(department => <option value={department.Id}>{department.Name}</option>)}
+                                        {this.state.services.map(service => <option value={service.Id}>{service.Name}</option>)}
                                     </Form.Control>
                                 </Form.Group>
                             </Col>
@@ -160,7 +160,6 @@ class AppointmentForm extends Component {
                             <Col>
                                 <h5>Выберите дату:</h5>
                                 <Form.Group as={Col} controlId="formGridState">
-
                                     <DayPicker required onDayClick={this.handleDayClick} selectedDay={this.state.selectedDay} />
                                 </Form.Group>
                             </Col>
