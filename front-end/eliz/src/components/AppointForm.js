@@ -78,7 +78,7 @@ class AppointmentForm extends Component {
     selectChangeHandler(event) {
         this.setState({ selectedDepartment: event.target.value });
         console.log(this.state.selectedDepartment);
-        axios.get(`https://localhost:44391/Home/GetDepartmentsDoctors/` + this.state.selectedDoctor)
+        axios.get(`https://localhost:44391/Home/GetDepartmentsDoctors/` + event.target.value)
             .then(res => {
                 const people = res.data;
                 this.setState({ people: people });
@@ -141,7 +141,7 @@ class AppointmentForm extends Component {
                             <Col lg={4}>
                                 <Form.Group controlId="formGridState">
                                     <h5>Выберите услугу:</h5>
-                                    <Form.Control required as="select" value={this.state.selectedDepartment} onChange={this.selectChangeHandler}>
+                                    <Form.Control required as="select" value={this.state.selectedDepartment} onChange={this.selectServiceChangeHandler}>
                                         {this.state.services.map(service => <option value={service.Id}>{service.Name}</option>)}
                                     </Form.Control>
                                 </Form.Group>
