@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CardComponent from '../components/Card'
-import { CardDeck } from 'react-bootstrap'
+import { CardDeck, Nav } from 'react-bootstrap'
 import axios from 'axios';
 
 import miha from '../components/docIcons/2.jpg';
@@ -26,7 +26,7 @@ class Doctors extends Component {
         const people = this.state.people;
         return (
             <CardDeck>
-                {people.map(person => <CardComponent image={person.Id == 2 ? miha : sveta}title={person.Name} text={person.Speciality} />)}
+                {people.map(person => <CardComponent image={person.Id == 2 ? miha : sveta} title={<Nav.Link to={"/profile/" + person.Id}>{person.Name}</Nav.Link>} text={person.Speciality} />)}
             </CardDeck>
         );
     }
