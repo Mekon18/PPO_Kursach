@@ -30,7 +30,7 @@ class DepartmentsAndDoctors extends Component {
                                 <h2>{department.Name}</h2>
                             </Row>
                             <Row>
-                                <Col lg={3}>
+                                <Col md={4}>
                                     <Doctors departmentId={department.Id} />
                                 </Col>
                             </Row>
