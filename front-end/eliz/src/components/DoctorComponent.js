@@ -3,8 +3,8 @@ import CardComponent from '../components/Card'
 import { CardDeck } from 'react-bootstrap'
 import axios from 'axios';
 
-import miha from '../components/docIcons/2.png';
-import sveta from '../components/docIcons/4.png';
+import miha from '../components/docIcons/2.jpg';
+import sveta from '../components/docIcons/4.jpg';
 
 class Doctors extends Component {
 
