@@ -17,8 +17,8 @@ export default class CarouselBox extends Component {
                             alt="First slide"
                         />
                         <Carousel.Caption>
-                            <h1>First slide label</h1>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            <h1>Лучшие врачи</h1>
+                            <p>Наши специалисты являются экспертами в своих областях</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -29,8 +29,8 @@ export default class CarouselBox extends Component {
                         />
 
                         <Carousel.Caption>
-                            <h1>Second slide label</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <h1>Мы надёжны</h1>
+                            <p>Работаем для вас с 2010 года</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -41,8 +41,8 @@ export default class CarouselBox extends Component {
                         />
 
                         <Carousel.Caption>
-                            <h1>Third slide label</h1>
-                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            <h1>У нас уютно как дома</h1>
+                            <p>Мы сделали всё, чтобы вы чувствовали себя комфортно</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel >
