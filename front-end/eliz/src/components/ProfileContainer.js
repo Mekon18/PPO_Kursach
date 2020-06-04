@@ -32,20 +32,23 @@ class ProfileContainer extends Component {
         return (
             <>
                 <Container>
-                    <Row className="mt-5">
+                    <Row className="mt-5 p-3">
                         <Col lg={6}>
                             <img src={this.props.match.params.id == 2 ? miha : sveta} width={275} />
                         </Col>
                         <Col lg={6}>
                             <h2 className="text-center">{this.state.user.Name}</h2>
-                            <span><b>Специальность:</b> {this.state.user.Specialty}</span>
-                            <span><b>Категория:</b> {this.state.user.Category}</span>
-                            <span><b>Стаж:</b> c {this.state.user.Experience} г.</span>
-                            <h3>Опыт работы:</h3>
+                            <h4>Специальность:</h4> 
+                            <span>{this.state.user.Specialty}</span>
+                            <h4>Категория:</h4> 
+                            <span>{this.state.user.Category}</span>
+                            <h4>Стаж:</h4> 
+                            <span>c {this.state.user.Experience} г.</span>
+                            <h4>Опыт работы:</h4>
                             <ul>
                                 {this.state.user.Experiences.map(person => <li>{person.Begging} - {person.Ending}: {person.Name}</li>)}
                             </ul>
-                            <h3>Дополнительная квалификация:</h3>
+                            <h4>Дополнительная квалификация:</h4>
                             <ul>
                                 {this.state.user.AdditionalEducations.map(person => <li>{person.Ending}: {person.Name}</li>)}
                             </ul>
