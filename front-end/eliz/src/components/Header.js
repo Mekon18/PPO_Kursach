@@ -6,6 +6,7 @@ import logo from '../assets/logo192.png'
 import Home from '../pages/Home';
 import Team from '../pages/Team';
 import About from '../pages/Appointment';
+import ProfileContainer from '../components/ProfileContainer'
 
 export default class Header extends Component {
     render() {
@@ -32,6 +33,7 @@ export default class Header extends Component {
                         <Route exact path="/" component={Home}/>
                         <Route exact path="/team" component={Team}/>
                         <Route exact path="/appointment" component={About}/>
+                        <Route path="/profile/:id" render={(props) => <ProfileContainer {...props}/>} />
                     </Switch>
                 </Router>
             </>
