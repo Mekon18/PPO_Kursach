@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import miha from '../components/docIcons/2.jpg';
 import sveta from '../components/docIcons/4.jpg';
+import { Container, Row, Col } from 'react-bootstrap'
 
 
 class ProfileContainer extends Component {
@@ -30,12 +31,27 @@ class ProfileContainer extends Component {
         console.log(this.state.user)
         return (
             <>
-                <h2 className="text-center mt-5">{this.state.user.Name}</h2>
-                <div className="text-center">
-                    <img  src={this.props.match.params.id == 2 ? miha : sveta} width={275}  />
-                </div>
-                <h3>{this.state.user.Specialty}</h3>
-                <span>{this.state.user.Category}</span>
+                <Container>
+                    <Row className="mt-5">
+                        <Col lg={6}>
+                            <img src={this.props.match.params.id == 2 ? miha : sveta} width={275} />
+                        </Col>
+                        <Col lg={6}>
+                            <h2 className="text-center">{this.state.user.Name}</h2>
+                            <span><b>Специальность:</b> {this.state.user.Specialty}</span>
+                            <span><b>Категория:</b> {this.state.user.Category}</span>
+                            <span><b>Стаж:</b> c {this.state.user.Experience} г.</span>
+                            <h3>Опыт работы:</h3>
+                            <ul>
+                                {this.state.user.Experiences.map(person => <li>{person.Begging} - {person.Ending}: {person.Name}</li>)}
+                            </ul>
+                            <h3>Дополнительная квалификация:</h3>
+                            <ul>
+                                {this.state.user.AdditionalEducations.map(person => <li>{person.Ending}: {person.Name}</li>)}
+                            </ul>
+                        </Col>
+                    </Row>
+                </Container>
             </>
         );
     }
