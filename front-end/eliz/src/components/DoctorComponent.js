@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CardComponent from '../components/Card'
-import { CardDeck, Nav } from 'react-bootstrap'
+import { CardDeck, Nav, Col } from 'react-bootstrap'
 import axios from 'axios';
 
 import miha from '../components/docIcons/2.jpg';
