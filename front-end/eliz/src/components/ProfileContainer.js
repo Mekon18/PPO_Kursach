@@ -38,17 +38,14 @@ class ProfileContainer extends Component {
                         </Col>
                         <Col lg={6}>
                             <h2 className="text-center">{this.state.user.Name}</h2>
-                            <h4>Специальность:</h4> 
-                            <span>{this.state.user.Specialty}</span>
-                            <h4>Категория:</h4> 
-                            <span>{this.state.user.Category}</span>
-                            <h4>Стаж:</h4> 
-                            <span>c {this.state.user.Experience} г.</span>
-                            <h4>Опыт работы:</h4>
+                            <h5>Специальность:</h5> <span>{this.state.user.Specialty}</span>
+                            <h5>Категория:</h5> <span>{this.state.user.Category}</span>
+                            <h5>Стаж:</h5> <span>c {this.state.user.Experience} г.</span>
+                            <h5>Опыт работы:</h5>
                             <ul>
-                                {this.state.user.Experiences.map(person => <li>{person.BeggingString} - {person.EndingString}: {person.Name}</li>)}
+                                {this.state.user.Experiences.map(person => <li>{person.BeginningString} - {person.EndingString}: {person.Name}</li>)}
                             </ul>
-                            <h4>Дополнительная квалификация:</h4>
+                            <h5>Дополнительная квалификация:</h5>
                             <ul>
                                 {this.state.user.AdditionalEducations.map(person => <li>{person.EndingString}: {person.Name}</li>)}
                             </ul>
