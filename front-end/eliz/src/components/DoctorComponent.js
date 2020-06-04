@@ -26,7 +26,7 @@ class Doctors extends Component {
         const people = this.state.people;
         return (
             <CardDeck>
-                {people.map(person => <CardComponent image={person.Id == 2 ? miha : sveta} title={<Nav.Link to={"/profile/" + person.Id}>{person.Name}</Nav.Link>} text={person.Speciality} />)}
+                {people.map(person => <CardComponent image={person.Id == 2 ? miha : sveta} title={<Nav.Link href={"/profile/" + person.Id}>{person.Name}</Nav.Link>} text={person.Speciality} />)}
             </CardDeck>
         );
     }
