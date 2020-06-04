@@ -46,11 +46,11 @@ class ProfileContainer extends Component {
                             <span>c {this.state.user.Experience} г.</span>
                             <h4>Опыт работы:</h4>
                             <ul>
-                                {this.state.user.Experiences.map(person => <li>{person.Begging} - {person.Ending}: {person.Name}</li>)}
+                                {this.state.user.Experiences.map(person => <li>{person.BeggingString} - {person.EndingString}: {person.Name}</li>)}
                             </ul>
                             <h4>Дополнительная квалификация:</h4>
                             <ul>
-                                {this.state.user.AdditionalEducations.map(person => <li>{person.Ending}: {person.Name}</li>)}
+                                {this.state.user.AdditionalEducations.map(person => <li>{person.EndingString}: {person.Name}</li>)}
                             </ul>
                         </Col>
                     </Row>
