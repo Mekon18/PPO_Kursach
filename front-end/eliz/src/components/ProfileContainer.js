@@ -34,8 +34,8 @@ class ProfileContainer extends Component {
                 <div className="text-center">
                     <img  src={this.props.match.params.id == 2 ? miha : sveta} width={275} height={300} />
                 </div>
-                {/* <h3>{this.state.user.Speciality.Name}</h3>
-                <span>{this.state.user.Speciality.category}</span> */}
+                <h3>{this.state.user.Speciality.Name}</h3>
+                <span>{this.state.user.Speciality.category}</span>
             </>
         );
     }
